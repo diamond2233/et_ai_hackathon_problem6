@@ -4,22 +4,22 @@
 
 SentinelAI is an AI-powered fraud detection platform developed for the **ET AI Hackathon 2026** under the problem statement:
 
-**"AI for Digital Public Safety: Defeating Counterfeiting, Fraud & Digital Arrest Scams."**
+> **AI for Digital Public Safety: Defeating Counterfeiting, Fraud & Digital Arrest Scams**
 
-The platform analyzes suspicious messages and scam content using a hybrid AI pipeline that combines deterministic rule-based detection, semantic similarity search, and Large Language Models (LLMs) to provide explainable threat assessments.
+The platform analyzes suspicious messages and scam content using a hybrid AI pipeline that combines rule-based detection, semantic similarity search, and Large Language Models (LLMs) to generate explainable fraud assessments and risk scores.
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
 - 🔍 Digital Arrest Scam Detection
 - 📱 SMS & WhatsApp Scam Detection
 - 📧 Email Phishing Detection
-- 🏦 Fake Banking Message Detection
-- 🤖 AI-powered Threat Explanation
+- 🏦 Banking Fraud Detection
+- 🤖 AI-Powered Threat Explanation
 - 📊 Risk Score & Confidence Score
-- 💬 AI Chat Assistance
-- 📄 PDF Evidence Report Generation
+- 💬 AI Chat Assistant
+- 📄 PDF Report Generation
 - 🧠 Conversation Memory
 - 📈 Analytics APIs
 - 🔐 JWT Authentication
@@ -27,73 +27,73 @@ The platform analyzes suspicious messages and scam content using a hybrid AI pip
 
 ---
 
-## 🏗️ Backend Architecture
+# 🏗️ Architecture
 
 ```
-FastAPI
-   │
-   ├── Authentication
-   ├── Fraud Detection Engine
-   ├── Rule Engine
-   ├── Similarity Matching
-   ├── Gemini (LangChain)
-   ├── Analytics
-   ├── Chat Service
-   ├── Report Generator
-   └── MongoDB
+                User Input
+                     │
+                     ▼
+              FastAPI Backend
+                     │
+     ┌───────────────┼───────────────┐
+     │               │               │
+     ▼               ▼               ▼
+ Rule Engine   Similarity Engine   Gemini LLM
+     │               │               │
+     └───────────────┼───────────────┘
+                     ▼
+            Risk Score Generator
+                     ▼
+          Explainable Fraud Verdict
+                     ▼
+          MongoDB + Analytics APIs
 ```
 
 ---
 
-## 🧠 AI Detection Pipeline
+# 🧠 AI Detection Pipeline
 
-1. Input Message
-2. Rule-based Red Flag Detection
-3. Campaign Similarity Matching
-4. Entity Extraction
-5. LLM Reasoning (Gemini via LangChain)
-6. Risk Score Calculation
-7. Threat Classification
-8. Explainable Verdict
+1. User submits suspicious content.
+2. Rule engine detects known scam patterns.
+3. Semantic similarity compares against known fraud campaigns.
+4. AI model analyzes context and intent.
+5. Risk score is calculated.
+6. Fraud explanation is generated.
+7. Final verdict is returned through the API.
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```
 backend/
-│
 ├── main.py
 ├── config.py
 ├── database.py
 ├── security.py
 ├── schemas.py
-│
-├── services/
-│   ├── detector.py
-│   ├── llm.py
-│   ├── similarity.py
-│   ├── report.py
-│   ├── analytics.py
-│   ├── memory.py
-│   └── seed.py
-│
-├── routes/
-│   ├── auth.py
-│   ├── analyze.py
-│   ├── analytics.py
-│   └── chat.py
-│
-├── scripts/
-│   ├── generate_dataset.py
-│   └── evaluate.py
-│
-└── data/
+├── auth.py
+├── analyze.py
+├── analytics.py
+├── chat.py
+├── detector.py
+├── llm.py
+├── similarity.py
+├── rules.py
+├── red_flags.py
+├── report.py
+├── memory.py
+├── campaigns.py
+├── common.py
+├── deps.py
+├── evaluate.py
+├── seed.py
+└── generate_dataset.py
 ```
 
 ---
 
-## 🛠 Tech Stack
+# 🛠 Tech Stack
 
 ### Backend
 
@@ -104,77 +104,58 @@ backend/
 - JWT Authentication
 - bcrypt
 
-### AI
+### AI & Machine Learning
 
 - Google Gemini
 - LangChain
-- Rule-based NLP
-- TF-IDF Similarity Matching
+- Rule-Based NLP
+- Semantic Similarity Matching
 
 ---
 
-## 📊 Synthetic Dataset
+# 📊 Backend Capabilities
 
-The project includes utilities for generating realistic datasets containing:
-
-- Scam Messages
-- Complaint Records
-- Fraud Hotspots
-- State Statistics
-- Scam Campaign Library
-
----
-
-## 🔐 Authentication
-
-- User Registration
-- Login
-- JWT Token Generation
-- Password Hashing
-- Protected Endpoints
-
----
-
-## 📈 APIs
-
-Current backend includes APIs for:
-
-- Authentication
-- Scam Analysis
-- Analytics
-- AI Chat
+- Authentication APIs
+- Scam Detection APIs
+- AI Chat APIs
+- Analytics APIs
 - Report Generation
+- Campaign Detection
+- Risk Assessment
+- Synthetic Dataset Generation
 
 ---
 
-## ⚙️ Getting Started
+# ⚙️ Getting Started
 
-### Clone Repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/SentinelAI.git
+git clone <repository-url>
 cd SentinelAI
 ```
 
-### Create Virtual Environment
+### Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Windows
+### Activate the environment
+
+**Windows**
 
 ```bash
 venv\Scripts\activate
 ```
 
-Linux / macOS
+**Linux / macOS**
 
 ```bash
 source venv/bin/activate
 ```
 
-### Install Dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -182,46 +163,50 @@ pip install -r requirements.txt
 
 ### Configure Environment
 
-Create a `.env` file and configure:
+Create a `.env` file and add the required configuration values for MongoDB, JWT authentication, and your Google Gemini API key.
 
-```env
-MONGODB_URI=
-JWT_SECRET=
-GOOGLE_API_KEY=
-```
-
-### Run the Server
+### Run the server
 
 ```bash
 uvicorn main:app --reload
 ```
 
+The API will be available at:
+
+```
+http://127.0.0.1:8000
+```
+
+Interactive API documentation:
+
+```
+http://127.0.0.1:8000/docs
+```
+
 ---
 
-## 🎯 Future Work
+# 📈 Future Enhancements
 
 - React Dashboard
 - Interactive Analytics
-- India Heat Map
-- Complaint Visualization
-- Threat Timeline
-- Advanced AI Agents
-- Mobile Responsive UI
+- India Fraud Heatmap
+- Real-time Scam Monitoring
+- Multi-language Support
+- Voice Scam Detection
+- Mobile Application
 
 ---
 
-## 🏆 Hackathon
+# 🏆 Hackathon
 
-Developed for:
-
-**ET AI Hackathon 2026**
+Developed for the **ET AI Hackathon 2026**.
 
 Problem Statement:
 
-> AI for Digital Public Safety: Defeating Counterfeiting, Fraud & Digital Arrest Scams.
+**AI for Digital Public Safety: Defeating Counterfeiting, Fraud & Digital Arrest Scams**
 
 ---
 
-## 📄 License
+# 📄 License
 
 This project was developed as a hackathon prototype for educational and demonstration purposes.
